@@ -1,0 +1,229 @@
+The authors of the dependency Rust crates:
+
+ab_glyph_rasterizer (version 0.1.8):
+  Alex Butler
+
+adler (version 1.0.2):
+  Jonas Schievink
+
+adler32 (version 1.2.0):
+  Remi Rampin
+
+autocfg (version 1.4.0):
+  Josh Stone
+
+bitflags (version 1.3.2):
+  The Rust Project Developers
+
+bytemuck (version 1.22.0):
+  Lokathor
+
+byteorder (version 1.5.0):
+  Andrew Gallant
+
+cc (version 1.2.19):
+  Alex Crichton
+
+cfg-if (version 1.0.0):
+  Alex Crichton
+
+color_quant (version 1.1.0):
+  nwin
+
+conv (version 0.3.3):
+  Daniel Keep
+
+crc32fast (version 1.4.2):
+  Sam Rijs
+  Alex Crichton
+
+crossbeam-deque (version 0.8.6):
+  
+
+crossbeam-epoch (version 0.9.18):
+  
+
+crossbeam-utils (version 0.8.21):
+  
+
+custom_derive (version 0.1.7):
+  Daniel Keep
+
+deflate (version 0.8.6):
+  oyvindln
+
+either (version 1.15.0):
+  bluss
+
+getrandom (version 0.1.16):
+  The Rand Project Developers
+
+gif (version 0.11.4):
+  nwin
+
+image (version 0.23.14):
+  The image-rs Developers
+
+image (version 0.23.2):
+  The image-rs Developers
+
+imageproc (version 0.22.0):
+  theotherphil
+
+itertools (version 0.9.0):
+  bluss
+
+jpeg-decoder (version 0.1.22):
+  Ulf Nilsson
+
+libc (version 0.2.172):
+  The Rust Project Developers
+
+matrixmultiply (version 0.1.15):
+  bluss
+
+miniz_oxide (version 0.3.7):
+  Frommi
+  oyvindln
+
+miniz_oxide (version 0.4.4):
+  Frommi
+  oyvindln
+
+num (version 0.1.43):
+  The Rust Project Developers
+
+num-bigint (version 0.3.3):
+  The Rust Project Developers
+
+num-complex (version 0.3.1):
+  The Rust Project Developers
+
+num-integer (version 0.1.46):
+  The Rust Project Developers
+
+num-iter (version 0.1.45):
+  The Rust Project Developers
+
+num-rational (version 0.3.2):
+  The Rust Project Developers
+
+num-traits (version 0.2.19):
+  The Rust Project Developers
+
+num (version 0.3.1):
+  The Rust Project Developers
+
+owned_ttf_parser (version 0.15.2):
+  Alex Butler
+
+png (version 0.16.8):
+  nwin
+
+ppv-lite86 (version 0.2.21):
+  The CryptoCorrosion Contributors
+
+proc-macro2 (version 1.0.95):
+  David Tolnay
+  Alex Crichton
+
+quote (version 1.0.40):
+  David Tolnay
+
+rand_chacha (version 0.2.2):
+  The Rand Project Developers
+  The Rust Project Developers
+  The CryptoCorrosion Contributors
+
+rand_core (version 0.5.1):
+  The Rand Project Developers
+  The Rust Project Developers
+
+rand_distr (version 0.2.2):
+  The Rand Project Developers
+
+rand_hc (version 0.2.0):
+  The Rand Project Developers
+
+rand (version 0.7.3):
+  The Rand Project Developers
+  The Rust Project Developers
+
+rawpointer (version 0.1.0):
+  bluss
+
+rayon-core (version 1.12.1):
+  Niko Matsakis
+  Josh Stone
+
+rayon (version 1.10.0):
+  Niko Matsakis
+  Josh Stone
+
+rulinalg (version 0.4.2):
+  AtheMathmo
+
+rusttype (version 0.9.3):
+  Dylan Ede
+  Jeremy Soller
+  Alex Butler
+
+rustversion (version 1.0.20):
+  David Tolnay
+
+savvy-bindgen (version 0.8.10):
+  Hiroaki Yutani
+
+savvy-ffi (version 0.8.10):
+  Hiroaki Yutani
+
+savvy-macro (version 0.8.10):
+  Hiroaki Yutani
+
+savvy (version 0.8.10):
+  Hiroaki Yutani
+
+scoped_threadpool (version 0.1.9):
+  Marvin Löbel
+
+shlex (version 1.3.0):
+  comex
+  Fenhl
+  Adrian Taylor
+  Alex Touchet
+  Daniel Parks
+  Garrett Berg
+
+syn (version 2.0.100):
+  David Tolnay
+
+tiff (version 0.6.1):
+  ccgn
+  bvssvni
+  nwin
+  TyOverby
+  HeroicKatora
+  Calum
+  CensoredUsername
+  Robzz
+  birktj
+
+ttf-parser (version 0.15.2):
+  Yevhenii Reizner
+
+unicode-ident (version 1.0.18):
+  David Tolnay
+
+wasi (version 0.9.0+wasi-snapshot-preview1):
+  The Cranelift Project Developers
+
+weezl (version 0.1.8):
+  The image-rs Developers
+
+zerocopy-derive (version 0.8.24):
+  Joshua Liebow-Feeser
+  Jack Wrenn
+
+zerocopy (version 0.8.24):
+  Joshua Liebow-Feeser
+  Jack Wrenn

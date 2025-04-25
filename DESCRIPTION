@@ -1,0 +1,29 @@
+Package: gglinedensity
+Title: Make DenseLines Heatmaps with 'ggplot2'
+Version: 0.0.0.9000
+Description: Create a raster plot of line density using the DenseLines algorithm
+    described by Moritz and Fisher (2018) <doi:10.48550/arXiv.1808.06019>,
+    using a 'ggplot2' statistic.
+Authors@R: c(
+    person("Harry", "Thompson", , "harry@mayesfield.uk", role = c("cre", "aut")),
+    person("Dominik", "Moritz", , "domoritz@gmail.com", role = "aut",
+           comment = "Rust original, <https://github.com/domoritz/line-density-rust>"),
+    person("The authors of the dependency Rust crates", role = "ctb",
+           comment = "see inst/AUTHORS file for details"),
+    person("Hiroaki", "Yutani", , "yutani.ini@gmail.com", role = "ctb",
+           comment = c(ORCID = "0000-0002-3385-7233",
+                       "Scripts where noted, <https://yutannihilation.github.io/string2path>"))
+  )
+License: GPL (>= 3)
+Encoding: UTF-8
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.3.2
+SystemRequirements: Cargo (Rust's package manager), rustc >= 1.65.0
+Config/gglinedensity/MSRV: 1.65.0
+Imports: 
+    cli,
+    ggplot2,
+    lifecycle,
+    rlang,
+    scales,
+    vctrs

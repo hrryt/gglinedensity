@@ -1,0 +1,13 @@
+^gglinedensity\.Rproj$
+^\.Rproj\.user$
+
+^src/rust/\.cargo$
+^src/rust/target$
+^src/Makevars$
+^src/Makevars\.win$
+^LICENSE\.md$
+
+^src/\.cargo$
+^src/rust/vendor$
+^update_authors\.R$
+^README\.Rmd$

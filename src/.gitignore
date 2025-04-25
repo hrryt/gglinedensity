@@ -1,0 +1,11 @@
+*.o
+*.so
+*.dll
+target
+
+Makevars
+Makevars.win
+
+.cargo
+rust/.cargo
+rust/vendor

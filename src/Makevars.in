@@ -1,0 +1,62 @@
+# # MIT License
+
+# Copyright (c) 2020 Hiroaki Yutani
+
+# Permission is hereby granted, free of charge, to any person obtaining a copy
+# of this software and associated documentation files (the "Software"), to deal
+# in the Software without restriction, including without limitation the rights
+# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+# copies of the Software, and to permit persons to whom the Software is
+# furnished to do so, subject to the following conditions:
+
+#   The above copyright notice and this permission notice shall be included in all
+# copies or substantial portions of the Software.
+
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+# SOFTWARE.
+
+# Copied from <https://yutannihilation.github.io/string2path>.
+
+TARGET = @TARGET@
+
+VENDORING = @VENDORING@
+OFFLINE_OPTION = @OFFLINE_OPTION@
+
+LIBDIR = ./rust/target/$(TARGET)/release
+PKG_LIBS = -L$(LIBDIR) -lgglinedensity
+STATLIB = $(LIBDIR)/libgglinedensity.a
+
+all: $(SHLIB) clean_intermediate
+
+$(SHLIB): $(STATLIB)
+
+$(STATLIB):
+	# vendoring (Note: to avoid NOTE of "Found the following hidden files and
+	# directories", .cargo needs to be created here)
+	if [ "$(VENDORING)" = "yes" ]; then \
+	  $(TAR) --extract --xz -f ./rust/vendor.tar.xz -C ./rust && \
+	    mkdir -p ./rust/.cargo && \
+	    cp ./cargo_vendor_config.toml ./rust/.cargo/config.toml; \
+	fi
+
+	if [ "$(TARGET)" != "wasm32-unknown-emscripten" ]; then \
+	  @BEFORE_CARGO_BUILD@ cd ./rust && cargo build --jobs 1 --lib --release $(OFFLINE_OPTION); \
+	else \
+	  export CC="$(CC)" && \
+	  export CFLAGS="$(CFLAGS)" && \
+	  export CARGO_PROFILE_RELEASE_PANIC="abort" && \
+	  @BEFORE_CARGO_BUILD@ cd ./rust && cargo +nightly build --lib --release --target $(TARGET) -Zbuild-std=panic_abort,std $(OFFLINE_OPTION); \
+	fi
+
+clean_intermediate: $(SHLIB)
+	rm -Rf $(STATLIB) ./rust/.cargo
+
+clean:
+	rm -Rf $(SHLIB) $(OBJECTS) $(STATLIB) ./rust/.cargo ./rust/vendor ./rust/target
+
+.PHONY: all clean_intermediate clean
