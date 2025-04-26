@@ -27,3 +27,5 @@ Imports:
     rlang,
     scales,
     vctrs
+URL: https://github.com/hrryt/gglinedensity
+BugReports: https://github.com/hrryt/gglinedensity/issues
