@@ -29,8 +29,8 @@ trends of multiple (time) series and to identify anomalous extrema" ([Moritz and
 You can install the development version of gglinedensity like so:
 
 ``` r
-# install.packages("devtools")
-devtools::install_github("hrryt/gglinedensity")
+# install.packages("remotes")
+remotes::install_github("hrryt/gglinedensity")
 ```
 
 ## Example
@@ -40,6 +40,7 @@ This is a basic example which shows you how to solve a common problem:
 ```{r example}
 library(ggplot2)
 library(gglinedensity)
-ggplot(economics_long, aes(date, value01, group = variable)) +
-  stat_line_density()
+ggplot(txhousing, aes(date, median, group = city)) +
+  stat_line_density(bins = 50, drop = FALSE) +
+  xlim(2000, 2015)
 ```

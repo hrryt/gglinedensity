@@ -36,7 +36,8 @@
 #' @examples
 #' library(ggplot2)
 #'
-#' p <- ggplot(economics_long, aes(date, value01, group = variable))
+#' p <- ggplot(txhousing, aes(date, median, group = city))
+#'
 #' p +
 #'   stat_line_density()
 #'
@@ -48,8 +49,8 @@
 #'   ) +
 #'   stat_line_density(
 #'     aes(
-#'       # add a label where density > 1.2
-#'       label = after_stat(ifelse(density > 1.2, round(density, 2), NA)),
+#'       # add a label where density > 7
+#'       label = after_stat(ifelse(density > 7, round(density, 2), NA)),
 #'       # label background fill
 #'       fill = after_stat(density)
 #'     ),
@@ -65,21 +66,20 @@
 #'     normalise = FALSE, drop = FALSE
 #'   ) +
 #'   geom_text( # equivalent to stat_line_density(geom = "text")
-#'     aes(label = after_stat(ifelse(density > 2, density, NA)), fill = NULL),
+#'     aes(label = after_stat(ifelse(density > 20, density, NA)), fill = NULL),
 #'     stat = "line_density", # or stat = StatLineDensity
 #'     normalise = FALSE
 #'   ) +
 #'   scale_fill_ordinal(name = "count")
 #'
-#' ggplot(economics, aes(unemploy, date)) +
+#' ggplot(txhousing, aes(median, date, group = city)) +
 #'   stat_line_density(
 #'     # scale the maximum density to 1
 #'     aes(fill = after_stat(density / max(density))),
-#'     orientation = "y"
+#'     bins = 50, orientation = "y"
 #'   ) +
-#'   geom_line(colour = "white", orientation = "y") +
 #'   scale_fill_continuous(name = "density") +
-#'   scale_y_continuous(trans = c("date", "reverse"))
+#'   scale_y_reverse()
 #'
 #' @export
 stat_line_density <- function(mapping = NULL, data = NULL, geom = "raster",
