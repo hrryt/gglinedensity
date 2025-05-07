@@ -11,3 +11,4 @@
 ^src/rust/vendor$
 ^update_authors\.R$
 ^README\.Rmd$
+^.github$

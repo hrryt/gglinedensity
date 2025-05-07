@@ -216,8 +216,8 @@ ggplot(txhousing, aes(median, date, group = city)) +
     aes(fill = after_stat(density / max(density))),
     bins = 50, orientation = "y"
   ) +
-    scale_fill_continuous(name = "density") +
-    scale_y_reverse()
+  scale_fill_continuous(name = "density") +
+  scale_y_reverse()
 
 }
 \references{
