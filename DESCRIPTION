@@ -1,11 +1,12 @@
 Package: gglinedensity
 Title: Make DenseLines Heatmaps with 'ggplot2'
 Version: 0.0.0.9000
-Description: Create a raster plot of line density using the DenseLines algorithm
-    described by Moritz and Fisher (2018) <doi:10.48550/arXiv.1808.06019>,
-    using a 'ggplot2' statistic.
+Description: Create a raster plot of line density using a 'ggplot2' statistic
+    implementing the DenseLines algorithm, which
+    "normalizes time series by the arc length to compute accurate densities"
+    (Moritz and Fisher, 2018) <doi:10.48550/arXiv.1808.06019>.
 Authors@R: c(
-    person("Harry", "Thompson", , "harry@mayesfield.uk", role = c("cre", "aut")),
+    person("Harry", "Thompson", , "harry@mayesfield.uk", role = c("cre", "aut", "cph")),
     person("Dominik", "Moritz", , "domoritz@gmail.com", role = "aut",
            comment = "Rust original, <https://github.com/domoritz/line-density-rust>"),
     person("The authors of the dependency Rust crates", role = "ctb",
