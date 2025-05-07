@@ -27,6 +27,12 @@ trends of multiple (time) series and to identify anomalous extrema" ([Moritz and
 
 ## Installation
 
+You can install gglinedensity like so:
+
+```r
+install.packages("gglinedensity")
+```
+
 You can install the development version of gglinedensity like so:
 
 ``` r

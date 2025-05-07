@@ -16,6 +16,12 @@ identify anomalous extrema” ([Moritz and Fisher,
 
 ## Installation
 
+You can install gglinedensity like so:
+
+``` r
+install.packages("gglinedensity")
+```
+
 You can install the development version of gglinedensity like so:
 
 ``` r
