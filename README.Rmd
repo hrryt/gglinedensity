@@ -9,7 +9,8 @@ knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>",
   fig.path = "man/figures/README-",
-  out.width = "100%"
+  out.width = "100%",
+  dpi = 300
 )
 ```
 
@@ -29,8 +30,8 @@ trends of multiple (time) series and to identify anomalous extrema" ([Moritz and
 You can install the development version of gglinedensity like so:
 
 ``` r
-# install.packages("remotes")
-remotes::install_github("hrryt/gglinedensity")
+# install.packages("pak")
+pak::pak("hrryt/gglinedensity")
 ```
 
 ## Example
@@ -41,6 +42,6 @@ This is a basic example which shows you how to solve a common problem:
 library(ggplot2)
 library(gglinedensity)
 ggplot(txhousing, aes(date, median, group = city)) +
-  stat_line_density(bins = 50, drop = FALSE) +
+  stat_line_density(bins = 50, drop = FALSE, na.rm = TRUE) +
   xlim(2000, 2015)
 ```

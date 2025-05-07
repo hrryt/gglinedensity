@@ -177,13 +177,13 @@ library(ggplot2)
 p <- ggplot(txhousing, aes(date, median, group = city))
 
 p +
-  stat_line_density()
+  stat_line_density(na.rm = TRUE)
 
 p +
   stat_line_density(
     # map density to colour rather than fill
     aes(colour = after_stat(density)),
-    geom = "point", size = 5
+    geom = "point", size = 5, na.rm = TRUE
   ) +
   stat_line_density(
     aes(
@@ -192,7 +192,7 @@ p +
       # label background fill
       fill = after_stat(density)
     ),
-    geom = "label"
+    geom = "label", na.rm = TRUE
   ) +
   scale_colour_viridis_c(trans = "log10") +
   scale_fill_viridis_c(trans = "log10")
@@ -201,12 +201,12 @@ p +
   stat_line_density(
     # convert to factor for a discrete scale
     aes(fill = after_stat(as.factor(density))),
-    normalise = FALSE, drop = FALSE
+    normalise = FALSE, drop = FALSE, na.rm = TRUE
   ) +
   geom_text( # equivalent to stat_line_density(geom = "text")
     aes(label = after_stat(ifelse(density > 20, density, NA)), fill = NULL),
     stat = "line_density", # or stat = StatLineDensity
-    normalise = FALSE
+    normalise = FALSE, na.rm = TRUE
   ) +
   scale_fill_ordinal(name = "count")
 
@@ -214,7 +214,7 @@ ggplot(txhousing, aes(median, date, group = city)) +
   stat_line_density(
     # scale the maximum density to 1
     aes(fill = after_stat(density / max(density))),
-    bins = 50, orientation = "y"
+    bins = 50, orientation = "y", na.rm = TRUE
   ) +
   scale_fill_continuous(name = "density") +
   scale_y_reverse()

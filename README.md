@@ -19,8 +19,8 @@ identify anomalous extrema” ([Moritz and Fisher,
 You can install the development version of gglinedensity like so:
 
 ``` r
-# install.packages("remotes")
-remotes::install_github("hrryt/gglinedensity")
+# install.packages("pak")
+pak::pak("hrryt/gglinedensity")
 ```
 
 ## Example
@@ -31,12 +31,8 @@ This is a basic example which shows you how to solve a common problem:
 library(ggplot2)
 library(gglinedensity)
 ggplot(txhousing, aes(date, median, group = city)) +
-  stat_line_density(bins = 50, drop = FALSE) +
+  stat_line_density(bins = 50, drop = FALSE, na.rm = TRUE) +
   xlim(2000, 2015)
-#> Warning: Removed 886 rows containing non-finite outside the scale range
-#> (`stat_line_density()`).
-#> Warning: Removed 100 rows containing missing values or values outside the scale range
-#> (`geom_raster()`).
 ```
 
 <img src="man/figures/README-example-1.png" width="100%" />
