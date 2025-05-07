@@ -12,3 +12,4 @@
 ^update_authors\.R$
 ^README\.Rmd$
 ^.github$
+^cran-comments\.md$
