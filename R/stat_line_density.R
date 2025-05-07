@@ -10,6 +10,7 @@
 #' @param normalise if `TRUE`, the default, density is normalised per group
 #' by the sum in each bin vertically, or horizontally if
 #' `orientation` is set to `"y"`.
+#' @returns A [ggplot2::layer()].
 #'
 #' @section Aesthetics:
 #' `stat_line_density()` understands the following aesthetics

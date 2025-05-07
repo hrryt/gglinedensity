@@ -139,6 +139,9 @@ rather than combining with them. This is most useful for helper functions
 that define both data and aesthetics and shouldn't inherit behaviour from
 the default plot specification, e.g. \code{\link[ggplot2:borders]{borders()}}.}
 }
+\value{
+A \code{\link[ggplot2:layer]{ggplot2::layer()}}.
+}
 \description{
 A 'ggplot2' statistic implementing the DenseLines algorithm
 described by Moritz and Fisher (2018).
