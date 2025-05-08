@@ -31,8 +31,7 @@
 #'
 #' @references Moritz, D. & Fisher, D. (2018).
 #' Visualizing a Million Time Series with the Density Line Chart.
-#' arXiv preprint arXiv:1409.0473.
-#' <https://doi.org/10.48550/arxiv.1808.06019>.
+#' arXiv preprint arXiv:1409.0473. \doi{10.48550/arxiv.1808.06019}.
 #'
 #' @examples
 #' library(ggplot2)

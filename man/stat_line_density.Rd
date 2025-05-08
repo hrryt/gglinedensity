@@ -226,8 +226,7 @@ ggplot(txhousing, aes(median, date, group = city)) +
 \references{
 Moritz, D. & Fisher, D. (2018).
 Visualizing a Million Time Series with the Density Line Chart.
-arXiv preprint arXiv:1409.0473.
-\url{https://doi.org/10.48550/arxiv.1808.06019}.
+arXiv preprint arXiv:1409.0473. \doi{10.48550/arxiv.1808.06019}.
 }
 \seealso{
 \code{\link[ggplot2:geom_bin_2d]{ggplot2::stat_bin_2d()}}, \code{\link[ggplot2:geom_path]{ggplot2::geom_line()}}, \code{\link[ggplot2:geom_tile]{ggplot2::geom_raster()}}.
