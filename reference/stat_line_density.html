@@ -139,20 +139,13 @@ lists which parameters it can accept.</p></li>
 
 
 <dt id="arg-bins">bins<a class="anchor" aria-label="anchor" href="#arg-bins"></a></dt>
-<dd><p>Number of bins. Overridden by <code>binwidth</code>. Defaults to 30.</p></dd>
+<dd><p>numeric vector giving number of bins in both vertical and
+horizontal directions. Set to 30 by default.</p></dd>
 
 
 <dt id="arg-binwidth">binwidth<a class="anchor" aria-label="anchor" href="#arg-binwidth"></a></dt>
-<dd><p>The width of the bins. Can be specified as a numeric value
-or as a function that takes x after scale transformation as input and
-returns a single numeric value. When specifying a function along with a
-grouping structure, the function will be called once per group.
-The default is to use the number of bins in <code>bins</code>,
-covering the range of the data. You should always override
-this value, exploring multiple widths to find the best to illustrate the
-stories in your data.</p>
-<p>The bin width of a date variable is the number of days in each time; the
-bin width of a time variable is the number of seconds.</p></dd>
+<dd><p>Numeric vector giving bin width in both vertical and
+horizontal directions. Overrides <code>bins</code> if both set.</p></dd>
 
 
 <dt id="arg-drop">drop<a class="anchor" aria-label="anchor" href="#arg-drop"></a></dt>
@@ -182,9 +175,7 @@ a warning. If <code>TRUE</code>, missing values are silently removed.</p></dd>
 <code>NA</code>, the default, includes if any aesthetics are mapped.
 <code>FALSE</code> never includes, and <code>TRUE</code> always includes.
 It can also be a named logical vector to finely select the aesthetics to
-display. To include legend keys for all levels, even
-when no data exists, use <code>TRUE</code>.  If <code>NA</code>, all levels are shown in legend,
-but unobserved levels are omitted.</p></dd>
+display.</p></dd>
 
 
 <dt id="arg-inherit-aes">inherit.aes<a class="anchor" aria-label="anchor" href="#arg-inherit-aes"></a></dt>
