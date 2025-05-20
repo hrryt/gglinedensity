@@ -4,6 +4,14 @@
 #' algorithm described by Moritz and Fisher (2018). `stat_path_density()` is to
 #' `stat_line_density()` as `geom_path()` is to `geom_line()`.
 #'
+#' `stat_line_density()` provides the `density` variable, which normalises
+#' `count` by its sum in each column of bins with the same value
+#' of the variable on the `orientation` axis. This is also provided by
+#' `stat_path_density()`, but should be used with caution as the DenseLines
+#' algorithm assumes lines are connected in order of the variable on the
+#' `orientation` axis. `stat_path_density()` therefore defaults to
+#' `aes(fill = after_stat(count))` rather than `after_stat(density)`.
+#'
 #' @aliases gglinedensity
 #' @inheritParams ggplot2::stat_bin_2d
 #' @inheritParams ggplot2::stat_identity

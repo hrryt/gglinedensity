@@ -147,6 +147,15 @@ the default plot specification, e.g. \code{\link[ggplot2:borders]{borders()}}.}
 algorithm described by Moritz and Fisher (2018). \code{stat_path_density()} is to
 \code{stat_line_density()} as \code{geom_path()} is to \code{geom_line()}.
 }
+\details{
+\code{stat_line_density()} provides the \code{density} variable, which normalises
+\code{count} by its sum in each column of bins with the same value
+of the variable on the \code{orientation} axis. This is also provided by
+\code{stat_path_density()}, but should be used with caution as the DenseLines
+algorithm assumes lines are connected in order of the variable on the
+\code{orientation} axis. \code{stat_path_density()} therefore defaults to
+\code{aes(fill = after_stat(count))} rather than \code{after_stat(density)}.
+}
 \section{Aesthetics}{
 
 \code{stat_line_density()} understands the following aesthetics
