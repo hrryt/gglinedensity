@@ -1,9 +1,10 @@
 Package: gglinedensity
 Title: Make DenseLines Heatmaps with 'ggplot2'
 Version: 0.1.1
-Description: Create a raster plot of line density using a 'ggplot2' statistic
-    implementing the DenseLines algorithm, which
-    "normalizes time series by the arc length to compute accurate densities"
+Description: Visualise overlapping time series lines as a heatmap of line
+    density. Provides a 'ggplot2' statistic implementing the DenseLines
+    algorithm, which "normalizes time series by the arc length to compute
+    accurate densities"
     (Moritz and Fisher, 2018) <doi:10.48550/arXiv.1808.06019>.
 Authors@R: c(
     person("Harry", "Thompson", , "harry@mayesfield.uk", role = c("cre", "aut", "cph")),
