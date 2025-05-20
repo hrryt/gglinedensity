@@ -2,7 +2,7 @@ pandoc: 3.1.11
 pkgdown: 2.1.2
 pkgdown_sha: ~
 articles: {}
-last_built: 2025-05-20T16:09Z
+last_built: 2025-05-20T16:15Z
 urls:
   reference: https://hrryt.github.io/gglinedensity/reference
   article: https://hrryt.github.io/gglinedensity/articles
