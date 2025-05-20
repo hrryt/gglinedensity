@@ -28,6 +28,10 @@ Imports:
     lifecycle,
     rlang,
     scales,
-    vctrs
+    vctrs,
+    vdiffr
 URL: https://github.com/hrryt/gglinedensity, https://hrryt.github.io/gglinedensity/
 BugReports: https://github.com/hrryt/gglinedensity/issues
+Suggests: 
+    testthat (>= 3.0.0)
+Config/testthat/edition: 3
