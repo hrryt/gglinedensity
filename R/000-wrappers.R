@@ -11,11 +11,11 @@ NULL
 
 # Check class and extract the external pointer embedded in the environment
 .savvy_extract_ptr <- function(e, class) {
-  if(is.null(e)) {
+  if (is.null(e)) {
     return(NULL)
   }
 
-  if(inherits(e, class)) {
+  if (inherits(e, class)) {
     e$.ptr
   } else {
     msg <- paste0("Expected ", class, ", got ", class(e)[1])
@@ -41,5 +41,3 @@ NULL
 `line_density` <- function(`xy`, `width`, `height`, `as_is`) {
   .Call(savvy_line_density__impl, `xy`, `width`, `height`, `as_is`)
 }
-
-

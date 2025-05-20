@@ -9,7 +9,8 @@ StatLineDensity <- ggplot2::ggproto(
   extra_params = c("na.rm", "orientation"),
   setup_params = function(data, params) {
     params$flipped_aes <- ggplot2::has_flipped_aes(
-      data, params, ambiguous = TRUE
+      data, params,
+      ambiguous = TRUE
     )
     if (is.character(params$drop)) {
       params$drop <- !identical(params$drop, "none")
@@ -34,7 +35,8 @@ StatLineDensity <- ggplot2::ggproto(
     )
     ggplot2::remove_missing(
       data, params$na.rm,
-      c(required_aes, self$non_missing_aes), "stat_line_density", finite = TRUE
+      c(required_aes, self$non_missing_aes), "stat_line_density",
+      finite = TRUE
     )
     params <- params[intersect(names(params), self$parameters())]
     args <- c(list(data = quote(data), scales = quote(scales)), params)
@@ -55,7 +57,7 @@ StatLineDensity <- ggplot2::ggproto(
     boundary <- boundary %||% if (is.null(center)) list(x = 0, y = 0)
     bins <- dual_param(bins, list(x = 30, y = 30))
 
-    if(flipped_aes) {
+    if (flipped_aes) {
       scales_x <- scales$y
       scales_y <- scales$x
     } else {
@@ -87,7 +89,7 @@ StatLineDensity <- ggplot2::ggproto(
     xy <- expand.grid(x = new_x, y = new_y)
     xy$density <- rast
 
-    if(drop) xy <- xy[rast != 0, ]
+    if (drop) xy <- xy[rast != 0, ]
 
     xy$flipped_aes <- flipped_aes
     ggplot2::flip_data(xy, flipped_aes)
