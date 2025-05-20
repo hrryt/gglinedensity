@@ -96,3 +96,20 @@ stat_line_density <- function(mapping = NULL, data = NULL, geom = "raster",
     )
   )
 }
+
+#' @rdname stat_line_density
+#' @export
+stat_path_density <- function(mapping = NULL, data = NULL, geom = "raster",
+                              position = "identity", ..., bins = 30,
+                              binwidth = NULL, drop = TRUE, normalise = FALSE,
+                              orientation = NA, na.rm = FALSE, show.legend = NA,
+                              inherit.aes = TRUE) {
+  ggplot2::layer(
+    stat = StatPathDensity, data = data, mapping = mapping, geom = geom,
+    position = position, show.legend = show.legend, inherit.aes = inherit.aes,
+    params = rlang::list2(
+      bins = bins, binwidth = binwidth, drop = drop, normalise = normalise,
+      orientation = orientation, na.rm = na.rm, ...
+    )
+  )
+}

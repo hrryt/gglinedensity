@@ -3,5 +3,7 @@
 S3method("$<-",savvy_gglinedensity__sealed)
 S3method("[[<-",savvy_gglinedensity__sealed)
 export(StatLineDensity)
+export(StatPathDensity)
 export(stat_line_density)
+export(stat_path_density)
 useDynLib(gglinedensity, .registration = TRUE)
