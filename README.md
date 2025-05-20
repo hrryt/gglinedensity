@@ -4,6 +4,7 @@
 # gglinedensity
 
 <!-- badges: start -->
+
 <!-- badges: end -->
 
 <img src="man/figures/README-nyse.png" width="100%" />
@@ -31,14 +32,35 @@ pak::pak("hrryt/gglinedensity")
 
 ## Example
 
-This is a basic example which shows you how to solve a common problem:
+This is a basic example which shows you how to create a DenseLines
+heatmap:
 
 ``` r
 library(ggplot2)
 library(gglinedensity)
+
 ggplot(txhousing, aes(date, median, group = city)) +
-  stat_line_density(bins = 50, drop = FALSE, na.rm = TRUE) +
-  xlim(2000, 2015)
+  stat_line_density(bins = 50, drop = FALSE, na.rm = TRUE)
 ```
 
-<img src="man/figures/README-example-1.png" width="100%" />
+<img src="man/figures/README-line-1.png" width="100%" />
+
+You can also calculate the number of paths crossing a given bin, without
+using the DenseLines algorithm:
+
+``` r
+ggplot(dplyr::storms, aes(long, lat, group = name)) +
+    borders(colour = NA, fill = "grey50") +
+    stat_path_density(geom = "tile", binwidth = 1.25, na.rm = TRUE) +
+    borders() +
+    xlim(-180, 0) +
+    ylim(-40, 80) +
+    coord_sf(
+        crs = sf::st_crs(5070),
+        default_crs = sf::st_crs(4326),
+        xlim = c(-120, -30), ylim = c(0, 70)
+    ) +
+    theme(panel.background = element_rect(fill = "grey10"))
+```
+
+<img src="man/figures/README-path-1.png" width="100%" />

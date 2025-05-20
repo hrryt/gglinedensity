@@ -34,14 +34,14 @@ SEXP handle_result(SEXP res_) {
     return (SEXP)res;
 }
 
-SEXP savvy_line_density__impl(SEXP c_arg__xy, SEXP c_arg__width, SEXP c_arg__height, SEXP c_arg__as_is) {
-    SEXP res = savvy_line_density__ffi(c_arg__xy, c_arg__width, c_arg__height, c_arg__as_is);
+SEXP savvy_line_density__impl(SEXP c_arg__xy, SEXP c_arg__width, SEXP c_arg__height) {
+    SEXP res = savvy_line_density__ffi(c_arg__xy, c_arg__width, c_arg__height);
     return handle_result(res);
 }
 
 
 static const R_CallMethodDef CallEntries[] = {
-    {"savvy_line_density__impl", (DL_FUNC) &savvy_line_density__impl, 4},
+    {"savvy_line_density__impl", (DL_FUNC) &savvy_line_density__impl, 3},
     {NULL, NULL, 0}
 };
 

@@ -53,7 +53,7 @@ StatLineDensity <- ggplot2::ggproto(
   },
   compute_panel = function(data, scales, binwidth = NULL, bins = 30, breaks = NULL,
                            origin = NULL, drop = TRUE, boundary = NULL, closed = NULL,
-                           center = NULL, normalise = TRUE, flipped_aes = FALSE) {
+                           center = NULL, flipped_aes = FALSE) {
     boundary <- boundary %||% if (is.null(center)) list(x = 0, y = 0)
     bins <- dual_param(bins, list(x = 30, y = 30))
 
@@ -80,18 +80,24 @@ StatLineDensity <- ggplot2::ggproto(
     x_binned <- (data$x - min(xbin$breaks)) * width / (max(xbin$breaks) - min(xbin$breaks))
     y_binned <- (data$y - min(ybin$breaks)) * height / (max(ybin$breaks) - min(ybin$breaks))
 
-    xy <- lapply(split(cbind(x_binned, y_binned), data$group), as.double)
-    rast <- line_density(xy, width, height, !normalise)
+    xy <- split(cbind(x_binned, y_binned), data$group)
+    xy <- lapply(xy, as.double)
+
+    cd <- line_density(xy, width, height)
+    cd <- matrix(cd, ncol = 2)
 
     new_x <- xbin$breaks[-1] - diff(xbin$breaks) / 2
     new_y <- ybin$breaks[-1] - diff(ybin$breaks) / 2
 
-    xy <- expand.grid(x = new_x, y = new_y)
-    xy$density <- rast
+    out <- expand.grid(x = new_x, y = new_y)
+    out$count <- cd[, 1]
+    out$ncount <- out$count / max(out$count, na.rm = TRUE)
+    out$density <- cd[, 2]
+    out$ndensity <- out$density / max(out$density, na.rm = TRUE)
 
-    if (drop) xy <- xy[rast != 0, ]
+    if (drop) out <- out[out$count != 0, ]
 
-    xy$flipped_aes <- flipped_aes
-    ggplot2::flip_data(xy, flipped_aes)
+    out$flipped_aes <- flipped_aes
+    ggplot2::flip_data(out, flipped_aes)
   }
 )

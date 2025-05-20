@@ -40,75 +40,78 @@ use savvy::{ListSexp, TypedSexp, RealSexp, OwnedRealSexp, savvy_err};
 
 type Image = ImageBuffer<Luma<f32>, Vec<f32>>;
 
-fn run_series(x: &[f64], y: &[f64], width: u32, height: u32, as_is: bool) -> Vec<f32> {
-    let mut data = Image::new(width, height);
-    for i in 0..x.len() - 1 {
-        if x[i].is_nan() || x[i+1].is_nan() || y[i].is_nan() || y[i+1].is_nan() {
-          continue;
-        }
-        draw_line_segment_mut(
-            &mut data,
-            (x[i] as f32, y[i] as f32),
-            (x[i + 1] as f32, y[i + 1] as f32),
-            Luma([1.0]),
-        );
+fn run_series(x: &[f64], y: &[f64], width: u32, height: u32) -> (Vec<f32>, Vec<f32>) {
+  let mut count = Image::new(width, height);
+  for i in 0..x.len() - 1 {
+    if x[i].is_nan() || x[i+1].is_nan() || y[i].is_nan() || y[i+1].is_nan() {
+      continue;
     }
-    if as_is {
-      return data.into_vec();
+    draw_line_segment_mut(
+      &mut count,
+      (x[i] as f32, y[i] as f32),
+      (x[i + 1] as f32, y[i + 1] as f32),
+      Luma([1.0]),
+    );
+  }
+  let mut density: Image = count.clone();
+  for i in 0..width {
+    let mut sum = 0.0;
+    for j in 0..height {
+      sum += count.get_pixel(i, j)[0];
     }
-    for i in 0..width {
-        let mut sum = 0.0;
-        for j in 0..height {
-            sum += data.get_pixel(i,j)[0];
-        }
-        if sum == 0.0 {
-            continue;
-        }
-        for j in 0..height {
-            let value = data.get_pixel(i,j)[0];
-            data.put_pixel(i,j,Luma([value / sum]));
-        }
+    if sum == 0.0 {
+      continue;
     }
-    data.into_vec()
+    for j in 0..height {
+      let value = count.get_pixel(i, j)[0];
+      density.put_pixel(i, j, Luma([value / sum]));
+    }
+  }
+  (count.into_vec(), density.into_vec())
 }
 
-fn sum_images(b: savvy::Result<Vec<f32>>, a: savvy::Result<Vec<f32>>) -> savvy::Result<Vec<f32>> {
-    let Ok(mut a) = a else {
-        return a;
-    };
-    let Ok(b) = b else {
-        return b;
-    };
-    for (a, b) in a.iter_mut().zip(b.iter()) {
-        *a += *b;
-    };
-    Ok(a.to_vec())
+fn sum_images(b: Vec<f32>, mut a: Vec<f32>) -> Vec<f32> {
+  for (a, b) in a.iter_mut().zip(b.iter()) {
+    *a += *b;
+  };
+  a.to_vec()
 }
 
 #[savvy]
-fn line_density(xy: ListSexp, width: i32, height: i32, as_is: bool) -> savvy::Result<savvy::Sexp> {
+fn line_density(xy: ListSexp, width: i32, height: i32) -> savvy::Result<savvy::Sexp> {
   let width: u32 = width as u32;
   let height: u32 = height as u32;
-  let pixels: savvy::Result<Vec<f32>> = xy
-      .values_iter()
-      .map(|xyi| -> savvy::Result<Vec<f32>> {
-          let xyi: RealSexp = match xyi.into_typed() {
-              TypedSexp::Real(i) => i,
-              _ => return Err(savvy_err!("xy must be list of doubles"))
-          };
-          let slice: &[f64] = xyi.as_slice();
-          let (x, y) = slice.split_at(slice.len() / 2);
-          Ok(run_series(x, y, width, height, as_is))
-      })
-      .fold(Ok(vec![0f32; (width * height) as usize]), sum_images);
-  let p = match pixels {
-      Ok(p) => p,
-      Err(e) => return Err(e)
+  let size: usize = (width * height) as usize;
+  let count_and_density: savvy::Result<(Vec<f32>, Vec<f32>)> = xy
+    .values_iter()
+    .map(|xyi| -> savvy::Result<(Vec<f32>, Vec<f32>)> {
+      let xyi: RealSexp = match xyi.into_typed() {
+        TypedSexp::Real(i) => i,
+        _ => return Err(savvy_err!("xy must be list of doubles"))
+      };
+      let slice: &[f64] = xyi.as_slice();
+      let (x, y) = slice.split_at(slice.len() / 2);
+      Ok(run_series(x, y, width, height))
+    })
+    .fold(Ok((vec![0f32; size], vec![0f32; size])), |x, y| {
+      let Ok(x) = x else {
+        return x;
+      };
+      let Ok(y) = y else {
+        return y;
+      };
+      Ok((sum_images(x.0, y.0), sum_images(x.1, y.1)))
+    });
+  let mut c_and_d = match count_and_density {
+    Ok(c_and_d) => c_and_d,
+    Err(e) => return Err(e)
   };
-  let iter = p.iter().map(|pixel| *pixel as f64);
+  c_and_d.0.extend(&c_and_d.1);
+  let cd = c_and_d.0;
+  let iter = cd.iter().map(|pixel| *pixel as f64);
   let out_sexp = OwnedRealSexp::try_from_iter(iter);
   match out_sexp {
-      Ok(out) => out.into(),
-      Err(e) => Err(e)
+    Ok(out) => out.into(),
+    Err(e) => Err(e)
   }
 }

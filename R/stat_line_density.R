@@ -1,16 +1,13 @@
 #' Create a DenseLines Heatmap
 #'
-#' A 'ggplot2' statistic implementing the DenseLines algorithm
-#' described by Moritz and Fisher (2018).
+#' `stat_line_density()` is a 'ggplot2' statistic implementing the DenseLines
+#' algorithm described by Moritz and Fisher (2018). `stat_path_density()` is to
+#' `stat_line_density()` as `geom_path()` is to `geom_line()`.
 #'
 #' @aliases gglinedensity
 #' @inheritParams ggplot2::stat_bin_2d
 #' @inheritParams ggplot2::stat_identity
 #' @inheritParams ggplot2::stat_count
-#' @param normalise if `TRUE`, the default, density is normalised per group
-#' by the sum in each bin vertically, or horizontally if
-#' `orientation` is set to `"y"`.
-#' @returns A [ggplot2::layer()].
 #'
 #' @section Aesthetics:
 #' `stat_line_density()` understands the following aesthetics
@@ -22,8 +19,14 @@
 #' @section Computed variables:
 #' These are calculated by the 'stat' part of layers and can be accessed with
 #' [delayed evaluation][ggplot2::aes_eval].
+#' * `after_stat(count)` \cr
+#' number of lines in bin.
 #' * `after_stat(density)` \cr
-#' density estimate.
+#' density of lines in bin. The result of the DenseLines algorithm.
+#' * `after_stat(ncount)` \cr
+#' count, scaled to maximum of 1.
+#' * `after_stat(ndensity)` \cr
+#' density, scaled to a maximum of 1.
 #'
 #' @inheritSection ggplot2::stat_count Orientation
 #'
@@ -39,76 +42,58 @@
 #' p <- ggplot(txhousing, aes(date, median, group = city))
 #'
 #' p +
-#'   stat_line_density(na.rm = TRUE)
+#'   stat_line_density(drop = FALSE, na.rm = TRUE)
 #'
 #' p +
+#'   aes(fill = after_stat(count)) +
 #'   stat_line_density(
-#'     # map density to colour rather than fill
-#'     aes(colour = after_stat(density)),
-#'     geom = "point", size = 5, na.rm = TRUE
+#'     aes(colour = after_stat(count)),
+#'     geom = "point", size = 10, bins = 15, na.rm = TRUE
 #'   ) +
 #'   stat_line_density(
-#'     aes(
-#'       # add a label where density > 7
-#'       label = after_stat(ifelse(density > 7, round(density, 2), NA)),
-#'       # label background fill
-#'       fill = after_stat(density)
-#'     ),
-#'     geom = "label", na.rm = TRUE
-#'   ) +
-#'   scale_colour_viridis_c(trans = "log10") +
-#'   scale_fill_viridis_c(trans = "log10")
-#'
-#' p +
-#'   stat_line_density(
-#'     # convert to factor for a discrete scale
-#'     aes(fill = after_stat(as.factor(density))),
-#'     normalise = FALSE, drop = FALSE, na.rm = TRUE
-#'   ) +
-#'   geom_text( # equivalent to stat_line_density(geom = "text")
-#'     aes(label = after_stat(ifelse(density > 20, density, NA)), fill = NULL),
-#'     stat = "line_density", # or stat = StatLineDensity
-#'     normalise = FALSE, na.rm = TRUE
-#'   ) +
-#'   scale_fill_ordinal(name = "count")
+#'     aes(label = after_stat(ifelse(count > 25, count, NA))),
+#'     geom = "label", size = 6, bins = 15, na.rm = TRUE
+#'   )
 #'
 #' ggplot(txhousing, aes(median, date, group = city)) +
 #'   stat_line_density(
-#'     # scale the maximum density to 1
-#'     aes(fill = after_stat(density / max(density))),
+#'     aes(fill = after_stat(ndensity)),
 #'     bins = 50, orientation = "y", na.rm = TRUE
-#'   ) +
-#'   scale_fill_continuous(name = "density") +
-#'   scale_y_reverse()
+#'   )
+#'
+#' m <- ggplot(economics, aes(unemploy/pop, psavert, group = date < as.Date("2000-01-01")))
+#' m + geom_path(aes(colour = after_stat(group)))
+#' m + stat_path_density()
 #'
 #' @export
 stat_line_density <- function(mapping = NULL, data = NULL, geom = "raster",
                               position = "identity", ..., bins = 30,
-                              binwidth = NULL, drop = TRUE, normalise = TRUE,
-                              orientation = NA, na.rm = FALSE, show.legend = NA,
+                              binwidth = NULL, drop = TRUE, orientation = NA,
+                              na.rm = FALSE, show.legend = NA,
                               inherit.aes = TRUE) {
   ggplot2::layer(
     stat = StatLineDensity, data = data, mapping = mapping, geom = geom,
     position = position, show.legend = show.legend, inherit.aes = inherit.aes,
     params = rlang::list2(
-      bins = bins, binwidth = binwidth, drop = drop, normalise = normalise,
+      bins = bins, binwidth = binwidth, drop = drop,
       orientation = orientation, na.rm = na.rm, ...
     )
   )
 }
 
+
 #' @rdname stat_line_density
 #' @export
 stat_path_density <- function(mapping = NULL, data = NULL, geom = "raster",
                               position = "identity", ..., bins = 30,
-                              binwidth = NULL, drop = TRUE, normalise = FALSE,
-                              orientation = NA, na.rm = FALSE, show.legend = NA,
+                              binwidth = NULL, drop = TRUE, orientation = NA,
+                              na.rm = FALSE, show.legend = NA,
                               inherit.aes = TRUE) {
   ggplot2::layer(
     stat = StatPathDensity, data = data, mapping = mapping, geom = geom,
     position = position, show.legend = show.legend, inherit.aes = inherit.aes,
     params = rlang::list2(
-      bins = bins, binwidth = binwidth, drop = drop, normalise = normalise,
+      bins = bins, binwidth = binwidth, drop = drop,
       orientation = orientation, na.rm = na.rm, ...
     )
   )

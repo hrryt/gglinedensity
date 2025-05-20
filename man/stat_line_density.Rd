@@ -19,7 +19,6 @@ stat_line_density(
   bins = 30,
   binwidth = NULL,
   drop = TRUE,
-  normalise = TRUE,
   orientation = NA,
   na.rm = FALSE,
   show.legend = NA,
@@ -35,7 +34,6 @@ stat_path_density(
   bins = 30,
   binwidth = NULL,
   drop = TRUE,
-  normalise = FALSE,
   orientation = NA,
   na.rm = FALSE,
   show.legend = NA,
@@ -125,10 +123,6 @@ horizontal directions. Overrides \code{bins} if both set.}
 
 \item{drop}{if \code{TRUE} removes all cells with 0 counts.}
 
-\item{normalise}{if \code{TRUE}, the default, density is normalised per group
-by the sum in each bin vertically, or horizontally if
-\code{orientation} is set to \code{"y"}.}
-
 \item{orientation}{The orientation of the layer. The default (\code{NA})
 automatically determines the orientation from the aesthetic mapping. In the
 rare event that this fails it can be given explicitly by setting \code{orientation}
@@ -148,12 +142,10 @@ rather than combining with them. This is most useful for helper functions
 that define both data and aesthetics and shouldn't inherit behaviour from
 the default plot specification, e.g. \code{\link[ggplot2:borders]{borders()}}.}
 }
-\value{
-A \code{\link[ggplot2:layer]{ggplot2::layer()}}.
-}
 \description{
-A 'ggplot2' statistic implementing the DenseLines algorithm
-described by Moritz and Fisher (2018).
+\code{stat_line_density()} is a 'ggplot2' statistic implementing the DenseLines
+algorithm described by Moritz and Fisher (2018). \code{stat_path_density()} is to
+\code{stat_line_density()} as \code{geom_path()} is to \code{geom_line()}.
 }
 \section{Aesthetics}{
 
@@ -171,8 +163,14 @@ described by Moritz and Fisher (2018).
 These are calculated by the 'stat' part of layers and can be accessed with
 \link[ggplot2:aes_eval]{delayed evaluation}.
 \itemize{
+\item \code{after_stat(count)} \cr
+number of lines in bin.
 \item \code{after_stat(density)} \cr
-density estimate.
+density of lines in bin. The result of the DenseLines algorithm.
+\item \code{after_stat(ncount)} \cr
+count, scaled to maximum of 1.
+\item \code{after_stat(ndensity)} \cr
+density, scaled to a maximum of 1.
 }
 }
 
@@ -189,47 +187,28 @@ library(ggplot2)
 p <- ggplot(txhousing, aes(date, median, group = city))
 
 p +
-  stat_line_density(na.rm = TRUE)
+  stat_line_density(drop = FALSE, na.rm = TRUE)
 
 p +
+  aes(fill = after_stat(count)) +
   stat_line_density(
-    # map density to colour rather than fill
-    aes(colour = after_stat(density)),
-    geom = "point", size = 5, na.rm = TRUE
+    aes(colour = after_stat(count)),
+    geom = "point", size = 10, bins = 15, na.rm = TRUE
   ) +
   stat_line_density(
-    aes(
-      # add a label where density > 7
-      label = after_stat(ifelse(density > 7, round(density, 2), NA)),
-      # label background fill
-      fill = after_stat(density)
-    ),
-    geom = "label", na.rm = TRUE
-  ) +
-  scale_colour_viridis_c(trans = "log10") +
-  scale_fill_viridis_c(trans = "log10")
-
-p +
-  stat_line_density(
-    # convert to factor for a discrete scale
-    aes(fill = after_stat(as.factor(density))),
-    normalise = FALSE, drop = FALSE, na.rm = TRUE
-  ) +
-  geom_text( # equivalent to stat_line_density(geom = "text")
-    aes(label = after_stat(ifelse(density > 20, density, NA)), fill = NULL),
-    stat = "line_density", # or stat = StatLineDensity
-    normalise = FALSE, na.rm = TRUE
-  ) +
-  scale_fill_ordinal(name = "count")
+    aes(label = after_stat(ifelse(count > 25, count, NA))),
+    geom = "label", size = 6, bins = 15, na.rm = TRUE
+  )
 
 ggplot(txhousing, aes(median, date, group = city)) +
   stat_line_density(
-    # scale the maximum density to 1
-    aes(fill = after_stat(density / max(density))),
+    aes(fill = after_stat(ndensity)),
     bins = 50, orientation = "y", na.rm = TRUE
-  ) +
-  scale_fill_continuous(name = "density") +
-  scale_y_reverse()
+  )
+
+m <- ggplot(economics, aes(unemploy/pop, psavert, group = date < as.Date("2000-01-01")))
+m + geom_path(aes(colour = after_stat(group)))
+m + stat_path_density()
 
 }
 \references{
