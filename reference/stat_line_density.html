@@ -197,6 +197,16 @@ the default plot specification, e.g. <code><a href="https://ggplot2.tidyverse.or
 
 </dl></div>
     <div class="section level2">
+    <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
+    <p><code>stat_line_density()</code> provides the <code>density</code> variable, which normalises
+<code>count</code> by its sum in each column of bins with the same value
+of the variable on the <code>orientation</code> axis. This is also provided by
+<code>stat_path_density()</code>, but should be used with caution as the DenseLines
+algorithm assumes lines are connected in order of the variable on the
+<code>orientation</code> axis. <code>stat_path_density()</code> therefore defaults to
+<code>aes(fill = after_stat(count))</code> rather than <code>after_stat(density)</code>.</p>
+    </div>
+    <div class="section level2">
     <h2 id="aesthetics">Aesthetics<a class="anchor" aria-label="anchor" href="#aesthetics"></a></h2>
 
 
