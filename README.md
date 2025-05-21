@@ -38,9 +38,12 @@ heatmap:
 ``` r
 library(ggplot2)
 library(gglinedensity)
+library(patchwork)
 
-ggplot(txhousing, aes(date, median, group = city)) +
-  stat_line_density(bins = 50, drop = FALSE, na.rm = TRUE)
+p <- ggplot(txhousing, aes(date, median, group = city))
+lines <- p + geom_line(alpha = 0.2, na.rm = TRUE)
+heatmap <- p + stat_line_density(bins = 50, drop = FALSE, na.rm = TRUE)
+lines + heatmap + plot_layout(axes = "collect")
 ```
 
 <img src="man/figures/README-line-1.png" width="100%" />
