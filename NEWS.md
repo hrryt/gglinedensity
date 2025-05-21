@@ -1,3 +1,5 @@
+# gglinedensity (development version)
+
 # gglinedensity 0.2.0
 
 `stat_path_density()` is added for binning paths connecting observations in the
