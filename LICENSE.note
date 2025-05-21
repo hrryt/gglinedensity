@@ -32,17 +32,17 @@ License: Apache-2.0
 
 ------------------------------
 
-Name:    adler
-Files:   vendor/adler/*
-Authors: Jonas Schievink
-License: 0BSD OR MIT OR Apache-2.0
+Name:    ab_glyph
+Files:   vendor/ab_glyph/*
+Authors: Alex Butler
+License: Apache-2.0
 
 ------------------------------
 
-Name:    adler32
-Files:   vendor/adler32/*
-Authors: Remi Rampin
-License: Zlib
+Name:    approx
+Files:   vendor/approx/*
+Authors: Brendan Zabarauskas
+License: Apache-2.0
 
 ------------------------------
 
@@ -53,10 +53,10 @@ License: Apache-2.0 OR MIT
 
 ------------------------------
 
-Name:    bitflags
-Files:   vendor/bitflags/*
-Authors: The Rust Project Developers
-License: MIT/Apache-2.0
+Name:    bumpalo
+Files:   vendor/bumpalo/*
+Authors: Nick Fitzgerald
+License: MIT OR Apache-2.0
 
 ------------------------------
 
@@ -67,9 +67,9 @@ License: Zlib OR Apache-2.0 OR MIT
 
 ------------------------------
 
-Name:    byteorder
-Files:   vendor/byteorder/*
-Authors: Andrew Gallant
+Name:    byteorder-lite
+Files:   vendor/byteorder-lite/*
+Authors: 
 License: Unlicense OR MIT
 
 ------------------------------
@@ -88,62 +88,6 @@ License: MIT/Apache-2.0
 
 ------------------------------
 
-Name:    color_quant
-Files:   vendor/color_quant/*
-Authors: nwin
-License: MIT
-
-------------------------------
-
-Name:    conv
-Files:   vendor/conv/*
-Authors: Daniel Keep
-License: MIT
-
-------------------------------
-
-Name:    crc32fast
-Files:   vendor/crc32fast/*
-Authors: Sam Rijs, Alex Crichton
-License: MIT OR Apache-2.0
-
-------------------------------
-
-Name:    crossbeam-deque
-Files:   vendor/crossbeam-deque/*
-Authors: 
-License: MIT OR Apache-2.0
-
-------------------------------
-
-Name:    crossbeam-epoch
-Files:   vendor/crossbeam-epoch/*
-Authors: 
-License: MIT OR Apache-2.0
-
-------------------------------
-
-Name:    crossbeam-utils
-Files:   vendor/crossbeam-utils/*
-Authors: 
-License: MIT OR Apache-2.0
-
-------------------------------
-
-Name:    custom_derive
-Files:   vendor/custom_derive/*
-Authors: Daniel Keep
-License: MIT/Apache-2.0
-
-------------------------------
-
-Name:    deflate
-Files:   vendor/deflate/*
-Authors: oyvindln
-License: MIT/Apache-2.0
-
-------------------------------
-
 Name:    either
 Files:   vendor/either/*
 Authors: bluss
@@ -158,24 +102,10 @@ License: MIT OR Apache-2.0
 
 ------------------------------
 
-Name:    gif
-Files:   vendor/gif/*
-Authors: nwin
-License: MIT/Apache-2.0
-
-------------------------------
-
 Name:    image
 Files:   vendor/image/*
 Authors: The image-rs Developers
-License: MIT
-
-------------------------------
-
-Name:    image
-Files:   vendor/image/*
-Authors: The image-rs Developers
-License: MIT
+License: MIT OR Apache-2.0
 
 ------------------------------
 
@@ -189,14 +119,14 @@ License: MIT
 Name:    itertools
 Files:   vendor/itertools/*
 Authors: bluss
-License: MIT/Apache-2.0
+License: MIT OR Apache-2.0
 
 ------------------------------
 
-Name:    jpeg-decoder
-Files:   vendor/jpeg-decoder/*
-Authors: Ulf Nilsson
-License: MIT / Apache-2.0
+Name:    js-sys
+Files:   vendor/js-sys/*
+Authors: The wasm-bindgen Developers
+License: MIT OR Apache-2.0
 
 ------------------------------
 
@@ -207,31 +137,31 @@ License: MIT OR Apache-2.0
 
 ------------------------------
 
-Name:    matrixmultiply
-Files:   vendor/matrixmultiply/*
-Authors: bluss
-License: MIT/Apache-2.0
-
-------------------------------
-
-Name:    miniz_oxide
-Files:   vendor/miniz_oxide/*
-Authors: Frommi, oyvindln
+Name:    libm
+Files:   vendor/libm/*
+Authors: Jorge Aparicio
 License: MIT
 
 ------------------------------
 
-Name:    miniz_oxide
-Files:   vendor/miniz_oxide/*
-Authors: Frommi, oyvindln
-License: MIT OR Zlib OR Apache-2.0
+Name:    log
+Files:   vendor/log/*
+Authors: The Rust Project Developers
+License: MIT OR Apache-2.0
 
 ------------------------------
 
-Name:    num
-Files:   vendor/num/*
-Authors: The Rust Project Developers
+Name:    matrixmultiply
+Files:   vendor/matrixmultiply/*
+Authors: bluss, R. Janis Goldschmidt
 License: MIT/Apache-2.0
+
+------------------------------
+
+Name:    nalgebra
+Files:   vendor/nalgebra/*
+Authors: Sébastien Crozet
+License: BSD-3-Clause
 
 ------------------------------
 
@@ -284,6 +214,13 @@ License: MIT OR Apache-2.0
 
 ------------------------------
 
+Name:    once_cell
+Files:   vendor/once_cell/*
+Authors: Aleksey Kladov
+License: MIT OR Apache-2.0
+
+------------------------------
+
 Name:    owned_ttf_parser
 Files:   vendor/owned_ttf_parser/*
 Authors: Alex Butler
@@ -291,9 +228,9 @@ License: Apache-2.0
 
 ------------------------------
 
-Name:    png
-Files:   vendor/png/*
-Authors: nwin
+Name:    paste
+Files:   vendor/paste/*
+Authors: David Tolnay
 License: MIT OR Apache-2.0
 
 ------------------------------
@@ -340,13 +277,6 @@ License: MIT OR Apache-2.0
 
 ------------------------------
 
-Name:    rand_hc
-Files:   vendor/rand_hc/*
-Authors: The Rand Project Developers
-License: MIT/Apache-2.0
-
-------------------------------
-
 Name:    rand
 Files:   vendor/rand/*
 Authors: The Rand Project Developers, The Rust Project Developers
@@ -361,38 +291,17 @@ License: MIT/Apache-2.0
 
 ------------------------------
 
-Name:    rayon-core
-Files:   vendor/rayon-core/*
-Authors: Niko Matsakis, Josh Stone
-License: MIT OR Apache-2.0
-
-------------------------------
-
-Name:    rayon
-Files:   vendor/rayon/*
-Authors: Niko Matsakis, Josh Stone
-License: MIT OR Apache-2.0
-
-------------------------------
-
-Name:    rulinalg
-Files:   vendor/rulinalg/*
-Authors: AtheMathmo
-License: MIT
-
-------------------------------
-
-Name:    rusttype
-Files:   vendor/rusttype/*
-Authors: Dylan Ede, Jeremy Soller, Alex Butler
-License: MIT / Apache-2.0
-
-------------------------------
-
 Name:    rustversion
 Files:   vendor/rustversion/*
 Authors: David Tolnay
 License: MIT OR Apache-2.0
+
+------------------------------
+
+Name:    safe_arch
+Files:   vendor/safe_arch/*
+Authors: Lokathor
+License: Zlib OR Apache-2.0 OR MIT
 
 ------------------------------
 
@@ -424,17 +333,17 @@ License: MIT
 
 ------------------------------
 
-Name:    scoped_threadpool
-Files:   vendor/scoped_threadpool/*
-Authors: Marvin Löbel
-License: MIT
-
-------------------------------
-
 Name:    shlex
 Files:   vendor/shlex/*
 Authors: comex, Fenhl, Adrian Taylor, Alex Touchet, Daniel Parks, Garrett Berg
 License: MIT OR Apache-2.0
+
+------------------------------
+
+Name:    simba
+Files:   vendor/simba/*
+Authors: sebcrozet
+License: Apache-2.0
 
 ------------------------------
 
@@ -445,16 +354,16 @@ License: MIT OR Apache-2.0
 
 ------------------------------
 
-Name:    tiff
-Files:   vendor/tiff/*
-Authors: ccgn, bvssvni, nwin, TyOverby, HeroicKatora, Calum, CensoredUsername, Robzz, birktj
-License: MIT
+Name:    ttf-parser
+Files:   vendor/ttf-parser/*
+Authors: Caleb Maclennan, Laurenz Stampfl, Yevhenii Reizner, خالد حسني (Khaled Hosny)
+License: MIT OR Apache-2.0
 
 ------------------------------
 
-Name:    ttf-parser
-Files:   vendor/ttf-parser/*
-Authors: Yevhenii Reizner
+Name:    typenum
+Files:   vendor/typenum/*
+Authors: Paho Lurie-Gregg, Andre Bogus
 License: MIT OR Apache-2.0
 
 ------------------------------
@@ -473,10 +382,45 @@ License: Apache-2.0 WITH LLVM-exception OR Apache-2.0 OR MIT
 
 ------------------------------
 
-Name:    weezl
-Files:   vendor/weezl/*
-Authors: The image-rs Developers
+Name:    wasm-bindgen-backend
+Files:   vendor/wasm-bindgen-backend/*
+Authors: The wasm-bindgen Developers
 License: MIT OR Apache-2.0
+
+------------------------------
+
+Name:    wasm-bindgen-macro-support
+Files:   vendor/wasm-bindgen-macro-support/*
+Authors: The wasm-bindgen Developers
+License: MIT OR Apache-2.0
+
+------------------------------
+
+Name:    wasm-bindgen-macro
+Files:   vendor/wasm-bindgen-macro/*
+Authors: The wasm-bindgen Developers
+License: MIT OR Apache-2.0
+
+------------------------------
+
+Name:    wasm-bindgen-shared
+Files:   vendor/wasm-bindgen-shared/*
+Authors: The wasm-bindgen Developers
+License: MIT OR Apache-2.0
+
+------------------------------
+
+Name:    wasm-bindgen
+Files:   vendor/wasm-bindgen/*
+Authors: The wasm-bindgen Developers
+License: MIT OR Apache-2.0
+
+------------------------------
+
+Name:    wide
+Files:   vendor/wide/*
+Authors: Lokathor
+License: Zlib OR Apache-2.0 OR MIT
 
 ------------------------------
 

@@ -3,23 +3,23 @@ The authors of the dependency Rust crates:
 ab_glyph_rasterizer (version 0.1.8):
   Alex Butler
 
-adler (version 1.0.2):
-  Jonas Schievink
+ab_glyph (version 0.2.29):
+  Alex Butler
 
-adler32 (version 1.2.0):
-  Remi Rampin
+approx (version 0.5.1):
+  Brendan Zabarauskas
 
 autocfg (version 1.4.0):
   Josh Stone
 
-bitflags (version 1.3.2):
-  The Rust Project Developers
+bumpalo (version 3.17.0):
+  Nick Fitzgerald
 
 bytemuck (version 1.22.0):
   Lokathor
 
-byteorder (version 1.5.0):
-  Andrew Gallant
+byteorder-lite (version 0.1.0):
+  
 
 cc (version 1.2.19):
   Alex Crichton
@@ -27,76 +27,44 @@ cc (version 1.2.19):
 cfg-if (version 1.0.0):
   Alex Crichton
 
-color_quant (version 1.1.0):
-  nwin
-
-conv (version 0.3.3):
-  Daniel Keep
-
-crc32fast (version 1.4.2):
-  Sam Rijs
-  Alex Crichton
-
-crossbeam-deque (version 0.8.6):
-  
-
-crossbeam-epoch (version 0.9.18):
-  
-
-crossbeam-utils (version 0.8.21):
-  
-
-custom_derive (version 0.1.7):
-  Daniel Keep
-
-deflate (version 0.8.6):
-  oyvindln
-
 either (version 1.15.0):
   bluss
 
-getrandom (version 0.1.16):
+getrandom (version 0.2.16):
   The Rand Project Developers
 
-gif (version 0.11.4):
-  nwin
-
-image (version 0.23.14):
+image (version 0.25.6):
   The image-rs Developers
 
-image (version 0.23.2):
-  The image-rs Developers
-
-imageproc (version 0.22.0):
+imageproc (version 0.25.0):
   theotherphil
 
-itertools (version 0.9.0):
+itertools (version 0.12.1):
   bluss
 
-jpeg-decoder (version 0.1.22):
-  Ulf Nilsson
+js-sys (version 0.3.77):
+  The wasm-bindgen Developers
 
 libc (version 0.2.172):
   The Rust Project Developers
 
-matrixmultiply (version 0.1.15):
+libm (version 0.2.15):
+  Jorge Aparicio
+
+log (version 0.4.27):
+  The Rust Project Developers
+
+matrixmultiply (version 0.3.10):
   bluss
+  R. Janis Goldschmidt
 
-miniz_oxide (version 0.3.7):
-  Frommi
-  oyvindln
+nalgebra (version 0.32.6):
+  Sébastien Crozet
 
-miniz_oxide (version 0.4.4):
-  Frommi
-  oyvindln
-
-num (version 0.1.43):
+num-bigint (version 0.4.6):
   The Rust Project Developers
 
-num-bigint (version 0.3.3):
-  The Rust Project Developers
-
-num-complex (version 0.3.1):
+num-complex (version 0.4.6):
   The Rust Project Developers
 
 num-integer (version 0.1.46):
@@ -105,20 +73,23 @@ num-integer (version 0.1.46):
 num-iter (version 0.1.45):
   The Rust Project Developers
 
-num-rational (version 0.3.2):
+num-rational (version 0.4.2):
   The Rust Project Developers
 
 num-traits (version 0.2.19):
   The Rust Project Developers
 
-num (version 0.3.1):
+num (version 0.4.3):
   The Rust Project Developers
 
-owned_ttf_parser (version 0.15.2):
+once_cell (version 1.21.3):
+  Aleksey Kladov
+
+owned_ttf_parser (version 0.25.0):
   Alex Butler
 
-png (version 0.16.8):
-  nwin
+paste (version 1.0.15):
+  David Tolnay
 
 ppv-lite86 (version 0.2.21):
   The CryptoCorrosion Contributors
@@ -130,46 +101,30 @@ proc-macro2 (version 1.0.95):
 quote (version 1.0.40):
   David Tolnay
 
-rand_chacha (version 0.2.2):
+rand_chacha (version 0.3.1):
   The Rand Project Developers
   The Rust Project Developers
   The CryptoCorrosion Contributors
 
-rand_core (version 0.5.1):
+rand_core (version 0.6.4):
   The Rand Project Developers
   The Rust Project Developers
 
-rand_distr (version 0.2.2):
+rand_distr (version 0.4.3):
   The Rand Project Developers
 
-rand_hc (version 0.2.0):
-  The Rand Project Developers
-
-rand (version 0.7.3):
+rand (version 0.8.5):
   The Rand Project Developers
   The Rust Project Developers
 
-rawpointer (version 0.1.0):
+rawpointer (version 0.2.1):
   bluss
-
-rayon-core (version 1.12.1):
-  Niko Matsakis
-  Josh Stone
-
-rayon (version 1.10.0):
-  Niko Matsakis
-  Josh Stone
-
-rulinalg (version 0.4.2):
-  AtheMathmo
-
-rusttype (version 0.9.3):
-  Dylan Ede
-  Jeremy Soller
-  Alex Butler
 
 rustversion (version 1.0.20):
   David Tolnay
+
+safe_arch (version 0.7.4):
+  Lokathor
 
 savvy-bindgen (version 0.8.10):
   Hiroaki Yutani
@@ -183,9 +138,6 @@ savvy-macro (version 0.8.10):
 savvy (version 0.8.10):
   Hiroaki Yutani
 
-scoped_threadpool (version 0.1.9):
-  Marvin Löbel
-
 shlex (version 1.3.0):
   comex
   Fenhl
@@ -194,31 +146,45 @@ shlex (version 1.3.0):
   Daniel Parks
   Garrett Berg
 
+simba (version 0.8.1):
+  sebcrozet
+
 syn (version 2.0.100):
   David Tolnay
 
-tiff (version 0.6.1):
-  ccgn
-  bvssvni
-  nwin
-  TyOverby
-  HeroicKatora
-  Calum
-  CensoredUsername
-  Robzz
-  birktj
-
-ttf-parser (version 0.15.2):
+ttf-parser (version 0.25.1):
+  Caleb Maclennan
+  Laurenz Stampfl
   Yevhenii Reizner
+  خالد حسني (Khaled Hosny)
+
+typenum (version 1.18.0):
+  Paho Lurie-Gregg
+  Andre Bogus
 
 unicode-ident (version 1.0.18):
   David Tolnay
 
-wasi (version 0.9.0+wasi-snapshot-preview1):
+wasi (version 0.11.0+wasi-snapshot-preview1):
   The Cranelift Project Developers
 
-weezl (version 0.1.8):
-  The image-rs Developers
+wasm-bindgen-backend (version 0.2.100):
+  The wasm-bindgen Developers
+
+wasm-bindgen-macro-support (version 0.2.100):
+  The wasm-bindgen Developers
+
+wasm-bindgen-macro (version 0.2.100):
+  The wasm-bindgen Developers
+
+wasm-bindgen-shared (version 0.2.100):
+  The wasm-bindgen Developers
+
+wasm-bindgen (version 0.2.100):
+  The wasm-bindgen Developers
+
+wide (version 0.7.32):
+  Lokathor
 
 zerocopy-derive (version 0.8.24):
   Joshua Liebow-Feeser
