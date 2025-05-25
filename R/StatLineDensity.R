@@ -7,7 +7,7 @@ StatLineDensity <- ggplot2::ggproto(
   required_aes = c("x", "y"),
   default_aes = ggplot2::aes(fill = after_stat(density)),
   extra_params = c("na.rm", "orientation"),
-  setup_params = function(data, params) {
+  setup_params = function(data, params, self = self) {
     params$flipped_aes <- ggplot2::has_flipped_aes(
       data, params,
       ambiguous = TRUE
@@ -15,7 +15,7 @@ StatLineDensity <- ggplot2::ggproto(
     if (is.character(params$drop)) {
       params$drop <- !identical(params$drop, "none")
     }
-    params <- fix_bin_params(params, fun = "stat_line_density")
+    params <- fix_bin_params(params, fun = snake_class(self))
     vars <- c("origin", "binwidth", "breaks", "center", "boundary")
     params[vars] <- lapply(params[vars], dual_param, default = NULL)
     params$closed <- dual_param(params$closed, list(x = "right", y = "right"))
@@ -28,14 +28,14 @@ StatLineDensity <- ggplot2::ggproto(
   },
   compute_layer = function(data, params, layout, self = self) {
     check_required_aesthetics(
-      self$required_aes, c(names(data), names(params)), "stat_line_density"
+      self$required_aes, c(names(data), names(params)), snake_class(self)
     )
     required_aes <- intersect(
       names(data), unlist(strsplit(self$required_aes, "|", fixed = TRUE))
     )
     ggplot2::remove_missing(
       data, params$na.rm,
-      c(required_aes, self$non_missing_aes), "stat_line_density",
+      c(required_aes, self$non_missing_aes), snake_class(self),
       finite = TRUE
     )
     params <- params[intersect(names(params), self$parameters())]

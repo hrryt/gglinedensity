@@ -115,3 +115,7 @@ dapply <- function(df, by, fun, ..., drop = TRUE) {
 data_frame0 <- function(...) {
   vctrs::data_frame(..., .name_repair = "minimal")
 }
+
+snake_class <- function(x) {
+  snakeize(class(x)[1])
+}

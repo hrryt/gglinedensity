@@ -593,3 +593,17 @@ check_number_whole <- function(x, ..., min = NULL, max = NULL, allow_infinite = 
                    min = min, max = max, allow_na = allow_na, allow_null = allow_null,
                    arg = arg, call = call)
 }
+
+snakeize <- function(x) {
+  x <- gsub("([A-Za-z])([A-Z])([a-z])", "\\1_\\2\\3", x)
+  x <- gsub(".", "_", x, fixed = TRUE)
+  x <- gsub("([a-z])([A-Z])", "\\1_\\2", x)
+  to_lower_ascii(x)
+}
+
+to_lower_ascii <- function(x) {
+  chartr(upper_ascii, lower_ascii, x)
+}
+
+upper_ascii <- "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+lower_ascii <- "abcdefghijklmnopqrstuvwxyz"
