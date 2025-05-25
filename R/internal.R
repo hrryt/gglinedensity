@@ -1,4 +1,4 @@
-id <- function (.variables, drop = FALSE) {
+id <- function(.variables, drop = FALSE) {
   nrows <- NULL
   if (is.data.frame(.variables)) {
     nrows <- nrow(.variables)
@@ -39,7 +39,7 @@ id <- function (.variables, drop = FALSE) {
   }
 }
 
-id_var <- function (x, drop = FALSE) {
+id_var <- function(x, drop = FALSE) {
   if (length(x) == 0) {
     id <- integer()
     n <- 0L
@@ -73,12 +73,12 @@ split_matrix <- function(x, col_names = colnames(x)) {
   x
 }
 
-modify_list <- function (old, new) {
+modify_list <- function(old, new) {
   for (i in names(new)) old[[i]] <- new[[i]]
   old
 }
 
-split_with_index <- function (x, f, n = max(f)) {
+split_with_index <- function(x, f, n = max(f)) {
   if (n == 1)
     return(list(x))
   f <- as.integer(f)
@@ -87,12 +87,12 @@ split_with_index <- function (x, f, n = max(f)) {
   unname(split(x, f))
 }
 
-vec_rbind0 <- function (..., .error_call = rlang::current_env(), .call = rlang::caller_env()) {
+vec_rbind0 <- function(..., .error_call = rlang::current_env(), .call = rlang::caller_env()) {
   with_ordered_restart(vctrs::vec_rbind(..., .error_call = .error_call),
                        .call)
 }
 
-with_ordered_restart <- function (expr, .call) {
+with_ordered_restart <- function(expr, .call) {
   withCallingHandlers(expr, vctrs_error_incompatible_type = function(cnd) {
     x <- cnd[["x"]]
     y <- cnd[["y"]]
@@ -165,7 +165,7 @@ deprecate_soft0 <- function(...) {
   lifecycle::deprecate_soft(..., user_env = user_env)
 }
 
-compute_bins <- function (x, scale = NULL, breaks = NULL, binwidth = NULL, bins = NULL,
+compute_bins <- function(x, scale = NULL, breaks = NULL, binwidth = NULL, bins = NULL,
                           center = NULL, boundary = NULL, closed = c("right", "left")) {
   range <- if (ggplot2::is_scale(scale))
     scale$dimension()
@@ -207,7 +207,7 @@ compute_bins <- function (x, scale = NULL, breaks = NULL, binwidth = NULL, bins 
                   closed = closed)
 }
 
-check_length <- function (x, length = integer(), ..., min = 0, max = Inf, arg = rlang::caller_arg(x),
+check_length <- function(x, length = integer(), ..., min = 0, max = Inf, arg = rlang::caller_arg(x),
                           call = rlang::caller_env()) {
   if (missing(x)) {
     stop_input_type(x, "a vector", arg = arg, call = call)
@@ -274,7 +274,7 @@ bin_breaks <- function(breaks, closed = c("right", "left"), fuzz = NULL) {
                  right_closed = closed == "right"), class = "ggplot2_bins")
 }
 
-bin_breaks_width <- function (x_range, width = NULL, center = NULL, boundary = NULL,
+bin_breaks_width <- function(x_range, width = NULL, center = NULL, boundary = NULL,
                               closed = c("right", "left")) {
   if (is.null(boundary)) {
     if (is.null(center)) {
@@ -298,7 +298,7 @@ bin_breaks_width <- function (x_range, width = NULL, center = NULL, boundary = N
   bin_breaks(breaks, closed = closed)
 }
 
-bin_breaks_bins <- function (x_range, bins = 30, center = NULL, boundary = NULL,
+bin_breaks_bins <- function(x_range, bins = 30, center = NULL, boundary = NULL,
                              closed = c("right", "left")) {
   if (scales::zero_range(x_range)) {
     width <- 0.1
@@ -318,12 +318,12 @@ bin_breaks_bins <- function (x_range, bins = 30, center = NULL, boundary = NULL,
                    closed = closed)
 }
 
-check_numeric <- function (x, what = "a {.cls numeric} vector", ..., arg = rlang::caller_arg(x),
+check_numeric <- function(x, what = "a {.cls numeric} vector", ..., arg = rlang::caller_arg(x),
                            call = rlang::caller_env()) {
   check_object(x, is.numeric, what, ..., arg = arg, call = call)
 }
 
-check_object <- function (x, check_fun, what, ..., allow_na = FALSE, allow_null = FALSE,
+check_object <- function(x, check_fun, what, ..., allow_na = FALSE, allow_null = FALSE,
                           arg = rlang::caller_arg(x), call = rlang::caller_env()) {
   if (!missing(x)) {
     if (check_fun(x)) {
@@ -340,11 +340,11 @@ check_object <- function (x, check_fun, what, ..., allow_na = FALSE, allow_null 
                   arg = arg, call = call)
 }
 
-as_cli <- function (..., env = rlang::caller_env()) {
+as_cli <- function(..., env = rlang::caller_env()) {
   cli::cli_fmt(cli::cli_text(..., .envir = env))
 }
 
-stop_input_type <- function (x, what, ..., allow_na = FALSE, allow_null = FALSE,
+stop_input_type <- function(x, what, ..., allow_na = FALSE, allow_null = FALSE,
                              show_value = TRUE, arg = rlang::caller_arg(x), call = rlang::caller_env()) {
   cli <- rlang::env_get_list(nms = c("format_arg", "format_code"),
                              last = topenv(), default = function(x) sprintf("`%s`",
@@ -369,7 +369,7 @@ stop_input_type <- function (x, what, ..., allow_na = FALSE, allow_null = FALSE,
   rlang::abort(message, ..., call = call, arg = arg)
 }
 
-oxford_comma <- function (chr, sep = ", ", final = "or") {
+oxford_comma <- function(chr, sep = ", ", final = "or") {
   n <- length(chr)
   if (n < 2) {
     return(chr)
@@ -385,7 +385,7 @@ oxford_comma <- function (chr, sep = ", ", final = "or") {
   }
 }
 
-obj_type_friendly <- function (x, value = TRUE)
+obj_type_friendly <- function(x, value = TRUE)
 {
   if (rlang::is_missing(x)) {
     return("absent")
@@ -463,7 +463,7 @@ obj_type_friendly <- function (x, value = TRUE)
   vec_type_friendly(x)
 }
 
-vec_type_friendly <- function (x, length = FALSE) {
+vec_type_friendly <- function(x, length = FALSE) {
   if (!rlang::is_vector(x)) {
     rlang::abort("`x` must be a vector.")
   }
@@ -529,7 +529,7 @@ vec_type_friendly <- function (x, length = FALSE) {
   rlang::abort(sprintf("Unexpected type <%s>.", typeof(x)), call = call)
 }
 
-check_number_decimal <- function (x, ..., min = NULL, max = NULL, allow_infinite = TRUE,
+check_number_decimal <- function(x, ..., min = NULL, max = NULL, allow_infinite = TRUE,
                                   allow_na = FALSE, allow_null = FALSE, arg = rlang::caller_arg(x),
                                   call = rlang::caller_env()) {
   if (missing(x)) {
@@ -547,7 +547,7 @@ check_number_decimal <- function (x, ..., min = NULL, max = NULL, allow_infinite
 
 .standalone_types_check_dot_call <- .Call
 
-.stop_not_number <- function (x, ..., exit_code, allow_decimal, min, max, allow_na,
+.stop_not_number <- function(x, ..., exit_code, allow_decimal, min, max, allow_na,
                               allow_null, arg, call) {
   if (allow_decimal) {
     what <- "a number"
@@ -578,7 +578,7 @@ check_number_decimal <- function (x, ..., min = NULL, max = NULL, allow_infinite
                   arg = arg, call = call)
 }
 
-check_number_whole <- function (x, ..., min = NULL, max = NULL, allow_infinite = FALSE,
+check_number_whole <- function(x, ..., min = NULL, max = NULL, allow_infinite = FALSE,
                                 allow_na = FALSE, allow_null = FALSE, arg = rlang::caller_arg(x),
                                 call = rlang::caller_env()) {
   if (missing(x)) {
