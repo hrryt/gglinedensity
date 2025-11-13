@@ -1,3 +1,5 @@
+skip_if_not_installed("vdiffr")
+
 test_that("stat_line_density works", {
   library(ggplot2)
   p <- ggplot(txhousing, aes(date, median, group = city))
@@ -16,14 +18,16 @@ test_that("stat_line_density is orientable", {
   p <- ggplot(txhousing, aes(median, date, group = city))
   vdiffr::expect_doppelganger(
     "Flipped DenseLines heatmap",
-    p + stat_line_density(aes(fill = after_stat(ndensity)), na.rm = TRUE)
+    p + stat_line_density(
+      aes(fill = after_stat(ndensity)),
+      na.rm = TRUE, orientation = "y"
+    )
   )
 })
 
 test_that("stat_path_density works", {
   library(ggplot2)
   m <- ggplot(economics, aes(unemploy/pop, psavert, group = date < as.Date("2000-01-01")))
-  m + geom_path(aes(colour = after_stat(group)))
   vdiffr::expect_doppelganger(
     "Overlapping paths",
     m + stat_path_density()
