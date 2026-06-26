@@ -165,9 +165,13 @@ deprecate_soft0 <- function(...) {
   lifecycle::deprecate_soft(..., user_env = user_env)
 }
 
+is_scale <- function(x) {
+	inherits(x, "Scale")
+}
+
 compute_bins <- function(x, scale = NULL, breaks = NULL, binwidth = NULL, bins = NULL,
                           center = NULL, boundary = NULL, closed = c("right", "left")) {
-  range <- if (ggplot2::is_scale(scale))
+  range <- if (is_scale(scale))
     scale$dimension()
   else range(x)
   check_length(range, 2L)
@@ -176,7 +180,7 @@ compute_bins <- function(x, scale = NULL, breaks = NULL, binwidth = NULL, bins =
     if (is.function(breaks)) {
       breaks <- breaks(x)
     }
-    if (ggplot2::is_scale(scale) && !scale$is_discrete()) {
+    if (is_scale(scale) && !scale$is_discrete()) {
       breaks <- scale$transform(breaks)
     }
     check_numeric(breaks)
