@@ -13,12 +13,14 @@ identify anomalous extrema” ([Moritz and Fisher,
 You can install gglinedensity like so:
 
 ``` r
+
 install.packages("gglinedensity")
 ```
 
 You can install the development version of gglinedensity like so:
 
 ``` r
+
 # install.packages("pak")
 pak::pak("hrryt/gglinedensity")
 ```
@@ -29,6 +31,7 @@ This is a basic example which shows you how to create a DenseLines
 heatmap:
 
 ``` r
+
 library(ggplot2)
 library(gglinedensity)
 library(patchwork)
@@ -45,6 +48,7 @@ You can also calculate the number of paths crossing a given bin, without
 using the DenseLines algorithm:
 
 ``` r
+
 ggplot(dplyr::storms, aes(long, lat, group = name)) +
     borders(colour = NA, fill = "grey50") +
     stat_path_density(geom = "tile", binwidth = 1.25, na.rm = TRUE) +

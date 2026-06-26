@@ -20,14 +20,14 @@
 Source:
 [`DESCRIPTION`](https://github.com/hrryt/gglinedensity/blob/main/DESCRIPTION)
 
-Thompson H, Moritz D (2025). *gglinedensity: Make DenseLines Heatmaps
+Thompson H, Moritz D (2026). *gglinedensity: Make DenseLines Heatmaps
 with 'ggplot2'*. R package version 0.2.0.9000,
 <https://github.com/hrryt/gglinedensity>.
 
     @Manual{,
       title = {gglinedensity: Make DenseLines Heatmaps with 'ggplot2'},
       author = {Harry Thompson and Dominik Moritz},
-      year = {2025},
+      year = {2026},
       note = {R package version 0.2.0.9000},
       url = {https://github.com/hrryt/gglinedensity},
     }
